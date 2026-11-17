@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صدقة جارية لروح المرحوم حماده محمد اسماعيل</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        
+        /* إعدادات الوضع الداكن (افتراضي) */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #090d16);
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --quran-bg: rgba(56, 189, 248, 0.1);
+            --quran-color: #38bdf8;
+            --duaa-bg: #0f172a;
+            --duaa-color: #e2e8f0;
+            --counter-bg: #0f172a;
+            --btn-bg: linear-gradient(135deg, #0284c7, #0369a1);
+            --tab-bg: #1e293b;
+            --tab-border: #334155;
+            --tab-text: #94a3b8;
+        }
+
+        /* إعدادات الوضع الفاتح */
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            --card-bg: #ffffff;
+            --card-border: #cbd5e1;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --quran-bg: rgba(2, 132, 199, 0.08);
+            --quran-color: #0284c7;
+            --duaa-bg: #f8fafc;
+            --duaa-color: #334155;
+            --counter-bg: #f8fafc;
+            --btn-bg: linear-gradient(135deg, #0284c7, #0284c7);
+            --tab-bg: #f1f5f9;
+            --tab-border: #cbd5e1;
+            --tab-text: #475569;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Cairo', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* تأثيرات النجوم الهادئة في الخلفية */
+        .stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image: radial-gradient(white 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            width: 100%;
+            max-width: 520px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* زر تبديل الوضع */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--tab-bg);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* البرواز الجميل للعبارة */
+        .quote-frame {
+            border: 2px dashed var(--quran-color);
+            background: var(--quran-bg);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: var(--quran-color);
+            font-weight: bold;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+        }
+
+        .quran-ayah {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding: 12px;
+            background: var(--duaa-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        
+        .img-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 15px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--quran-color);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h1 {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+        
+        /* عداد المدة منذ الوفاة */
+        .time-passed-box {
+            background: var(--duaa-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--quran-color);
+            font-weight: bold;
+        }
+
+        /* حصن المسلم وأدعية للميت */
+        .duaa-section {
+            background: var(--duaa-bg);
+            border: 1px solid var(--card-border);
+            border-right: 4px solid var(--quran-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .duaa-section h3 {
+            color: var(--quran-color);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .duaa-item {
+            font-size: 0.9rem;
+            color: var(--duaa-color);
+            margin-bottom: 8px;
+            line-height: 1.6;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed var(--card-border);
+        }
+        .duaa-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        /* قراءة الفاتحة */
+        .fatiha-section {
+            background: var(--counter-bg);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--card-border);
+        }
+        .fatiha-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            margin-top: 8px;
+        }
+        .fatiha-btn:active { transform: scale(0.97); }
+
+        .fatiha-display {
+            display: none;
+            background: var(--quran-bg);
+            border: 1px solid var(--quran-color);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1.05rem;
+            color: var(--quran-color);
+            line-height: 2;
+            font-weight: bold;
+        }
+
+        /* السبحة الإلكترونية */
+        .counter-section {
+            background: var(--counter-bg);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+        }
+        .counter-section h3 {
+            font-size: 1rem;
+            color: var(--quran-color);
+            margin-bottom: 12px;
+        }
+        .azkar-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .tab-btn {
+            background: var(--tab-bg);
+            color: var(--tab-text);
+            border: 1px solid var(--tab-border);
+            padding: 8px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+            font-weight: bold;
+        }
+        .tasbih-btn {
+            background: var(--btn-bg);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            width: 100%;
+            font-weight: bold;
+        }
+        .tasbih-btn:active { transform: scale(0.97); }
+        .counter-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding: 0 5px;
+        }
+        .count-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--quran-color);
+        }
+        .reset-btn {
+            background: transparent;
+            color: #ef4444;
+            border: 1px solid #7f1d1d;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <div class="card">
+        <!-- زر تبديل الوضع -->
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ الوضع الفاتح</button>
+
+        <!-- البرواز الإبداعي للعبارة -->
+        <div class="quote-frame">
+            «رَبْمَا لَا تَسْتَطِيعُ أَنْ تُعِيدَ مَنْ نُحِب، وَلَكِنْ تَسْتَطِيعُ أَنْ تْتْرُكَ أَثَرًا مِنَ الخَيْرِ يَصِلُ إِلَيْهِ بِإِذْنِ اللَّه»
+        </div>
+
+        <!-- الآيات القرآنية -->
+        <div class="quran-ayah">
+            ﴿ كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ ۗ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ ﴾<br>
+            <span style="font-size: 0.85rem; display: block; margin-top: 6px; color: var(--quran-color);">﴿ رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ ﴾</span>
+        </div>
+
+        <!-- صورة الفقيد -->
+        <div class="img-container">
+            <img src="deceased2.jpg" alt="صورة الفقيد">
+        </div>
+
+        <h1>صدقة جارية<br>لروح المرحوم / حماده محمد اسماعيل</h1>
+        
+        <!-- عداد المدة منذ الوفاة (13 يوليو 2013) -->
+        <div class="time-passed-box" id="deathCounter">
+            جاري احتساب المدة...
+        </div>
+
+        <!-- حصن المسلم (أدعية ثابتة ومؤثرة للميت) -->
+        <div class="duaa-section">
+            <h3>من أدعية السنة للميت (يُرجى الدعاء له)</h3>
+            <div class="duaa-item">"اللهم اغفر له وارحمه، وعافه واعف عنه، وأكرم نزله، ووسع مدخله."</div>
+            <div class="duaa-item">"اللهم أبدله داراً خيراً من داره، وأهلاً خيراً من أهله، وأدخله الجنة بغير حساب."</div>
+            <div class="duaa-item">"اللهم اجعل قبره روضة من رياض الجنة، ولا تجعله حفرة من حفر النار."</div>
+        </div>
+
+        <!-- قراءة الفاتحة -->
+        <div class="fatiha-section">
+            <div style="font-size: 0.95rem; margin-bottom: 5px; color: var(--text-color);">اضغط لقراءة سورة الفاتحة لروح الفقيد</div>
+            <button class="fatiha-btn" onclick="showFatiha()">قَرَأْتُ الْفَاتِحَة 🤍</button>
+            
+            <div class="fatiha-display" id="fatihaBox">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿1﴾<br>
+                الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿2﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿3﴾<br>
+                مَالِكِ يَوْمِ الدِّينِ ﴿4﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿5﴾<br>
+                اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿6﴾<br>
+                صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿7﴾
+            </div>
+
+            <div style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);">عدد مرات قراءة الفاتحة الجماعية: <span id="fatihaCount" style="color: var(--quran-color); font-weight: bold;">85</span> مره</div>
+        </div>
+
+        <!-- السبحة الإلكترونية المتعددة الأذكار -->
+        <div class="counter-section">
+            <h3>السبحة الإلكترونية (اختر الذكر)</h3>
+            
+            <div class="azkar-tabs">
+                <button class="tab-btn active" onclick="setZikr('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', this)">سبحان الله وبحمده</button>
+                <button class="tab-btn" onclick="setZikr('أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ', this)">أستغفر الله العظيم</button>
+                <button class="tab-btn" onclick="setZikr('لَا إِلَهَ إِلَّا اللَّهُ', this)">لا إله إلا الله</button>
+                <button class="tab-btn" onclick="setZikr('اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ', this)">الصلاة على النبي</button>
+            </div>
+
+            <button class="tasbih-btn" id="currentZikrBtn" onclick="incrementCounter()">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</button>
+            
+            <div class="counter-footer">
+                <div class="count-display" id="counter">0</div>
+                <button class="reset-btn" onclick="resetCounter()">تصفير العداد</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            نسألكم الدعاء له وقراءة الفاتحة
+        </div>
+    </div>
+
+    <script>
+        // حساب المدة منذ تاريخ الوفاة (13 يوليو 2013)
+        function updateDeathCounter() {
+            const deathDate = new Date('2013-07-13T00:00:00');
+            const now = new Date();
+            
+            let years = now.getFullYear() - deathDate.getFullYear();
+            let months = now.getMonth() - deathDate.getMonth();
+            let days = now.getDate() - deathDate.getDate();
+
+            if (days < 0) {
+                months--;
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const diffTime = Math.abs(now - deathDate);
+            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            document.getElementById('deathCounter').innerHTML = 
+                `مضى على فراقه: ${years} سنوات، ${months} شهور، و ${days} يوماً<br><span style="font-size: 0.75rem; opacity: 0.8;">(إجمالي الأيام: ${totalDays.toLocaleString('ar-EG')} يوماً في رحمة الله)</span>`;
+        }
+        updateDeathCounter();
+
+        // إظهار سورة الفاتحة وزيادة العداد (مع مفتاح تخزين منفصل لهذا الموقع)
+        let fatihaTotal = localStorage.getItem('fatiha_count_hamada') ? parseInt(localStorage.getItem('fatiha_count_hamada')) : 85;
+        document.getElementById('fatihaCount').innerText = fatihaTotal;
+
+        function showFatiha() {
+            const box = document.getElementById('fatihaBox');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+                fatihaTotal++;
+                localStorage.setItem('fatiha_count_hamada', fatihaTotal);
+                document.getElementById('fatihaCount').innerText = fatihaTotal;
+            }
+        }
+
+        // السبحة الإلكترونية
+        let count = 0;
+        let currentZikrText = "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ";
+
+        function setZikr(zikr, btnElement) {
+            currentZikrText = zikr;
+            document.getElementById('currentZikrBtn').innerText = zikr;
+            
+            let buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+            
+            count = 0;
+            document.getElementById('counter').innerText = count;
+        }
+
+        function incrementCounter() {
+            count++;
+            document.getElementById('counter').innerText = count;
+        }
+
+        function resetCounter() {
+            count = 0;
+            document.getElementById('counter').innerText = count;
+        }
+
+        // دالة تبديل الوضع (داكن / فاتح)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeBtn = document.getElementById('themeBtn');
+            
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                themeBtn.innerText = '☀️ الوضع الفاتح';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙 الوضع الداكن';
+            }
+        }
+    </script>
+
+</body>
+</html>
